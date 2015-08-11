@@ -1,0 +1,26 @@
+﻿<UserControl
+    x:Class="wikia_Unofficial.Templates.SplitPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:wikia_Unofficial.Templates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <!--<Button x:Name="HamburgerButton2" FontFamily="Segoe MDL2 Assets"
+                    Height="50" Background="Transparent" FontSize="30" BorderThickness="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False">
+                &#xE700;</Button>-->
+            <TextBlock Text="[kk]" FontSize="25" VerticalAlignment="Center" Width="185" Margin="20,10,0,10" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="home" Click="goto_Home" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" ></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="search" Click="goto_Search" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" ></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="about" Click="goto_About" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" ></Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
