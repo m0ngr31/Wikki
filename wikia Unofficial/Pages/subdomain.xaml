@@ -17,7 +17,7 @@
             <Grid Background="#f7f7f7">
                 <StackPanel  Height="50" VerticalAlignment="Top">
                     <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
-                    Width="50" Height="50" Click="HamburgerButton_Click" Background="Transparent" FontSize="30" BorderThickness="0"/>
+                    Width="50" Height="50" Click="HamburgerButton_Click" Background="Transparent" FontSize="30" BorderThickness="0"  Style="{StaticResource NoAnimations}"/>
                     <TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="50,-50,0,0" Text="subdomain" FontSize="25" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
                 </StackPanel>
                 <TextBlock Text="SplitView Basic" FontSize="54" 

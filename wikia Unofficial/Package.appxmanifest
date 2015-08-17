@@ -3,8 +3,8 @@
   <Identity Name="af115632-2a0b-4a96-88f0-6f4a4bb629c4" Publisher="CN=joeip" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="af115632-2a0b-4a96-88f0-6f4a4bb629c4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>iKKi</DisplayName>
-    <PublisherDisplayName>joeip</PublisherDisplayName>
+    <DisplayName>Wikki</DisplayName>
+    <PublisherDisplayName>m0ngr31</PublisherDisplayName>
     <Logo>Assets\StoreLogo\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

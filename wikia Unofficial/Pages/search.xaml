@@ -17,8 +17,8 @@
             <Grid Background="#f7f7f7">
                 <StackPanel  Height="50" VerticalAlignment="Top">
                     <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
-                    Width="50" Height="50" Click="HamburgerButton_Click" Background="Transparent" FontSize="30" BorderThickness="0"/>
-                    <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Margin="50,-50,0,0" FontSize="33.333" BorderThickness="0,0,0,0" PlaceholderText="Search" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Background="#FFF7F7F7" InputScope="Search"/>
+                    Width="50" Height="50" Click="HamburgerButton_Click" Background="Transparent" FontSize="30" BorderThickness="0" Style="{StaticResource NoAnimations}"/>
+                    <TextBox x:Name="textBox" TextWrapping="Wrap" Margin="50,-50,0,0" FontSize="33.333" BorderThickness="0,0,0,0" PlaceholderText="search" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Background="#FFF7F7F7" InputScope="Search"/>
                     <!--<TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="50,-50,0,0" Text="search" FontSize="25" />-->
                 </StackPanel>
                 <TextBlock Text="SplitView Basic" FontSize="54" 

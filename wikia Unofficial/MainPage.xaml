@@ -21,7 +21,7 @@
             <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Canvas.Top="3" Canvas.Left="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Canvas>-->
 
-        <Button BorderThickness="2" Name="main_button" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75">
+        <Button BorderThickness="2" Name="main_button" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75"  Style="{StaticResource NoAnimations}">
             Let's get started
         </Button>
         
