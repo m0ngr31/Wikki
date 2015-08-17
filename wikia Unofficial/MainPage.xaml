@@ -8,10 +8,10 @@
     xmlns:panes="using:wikia_Unofficial.Templates"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         
         <MediaElement AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/endlessCandles.wmv" Stretch="UniformToFill"/>
-        <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title"/>
+        <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title" Margin="0,75,0,0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" SelectionHighlightColor="White"/>
 
         <!--<Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" Width="112" Height="73" Margin="-1,-200,0,0">
             <TextBlock Canvas.ZIndex="1" Text="[kk]" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Canvas.Top="2" Canvas.Left="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -21,7 +21,7 @@
             <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Canvas.Top="3" Canvas.Left="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Canvas>-->
 
-        <Button BorderThickness="2" Name="main_button" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,500,0,0">
+        <Button BorderThickness="2" Name="main_button" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75">
             Let's get started
         </Button>
         

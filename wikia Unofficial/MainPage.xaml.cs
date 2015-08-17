@@ -27,15 +27,15 @@ namespace wikia_Unofficial
         {
             this.InitializeComponent();
 
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                title.Margin = new Thickness(0, 0, 0, 400);
-                main_button.Margin = new Thickness(0, 400, 0, 0);
-            } else
-            {
-                title.Margin = new Thickness(0, 0, 0, 500);
-                main_button.Margin = new Thickness(0, 500, 0, 0);
-            }
+            //if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            //{
+            //    title.Margin = new Thickness(0, 0, 0, 400);
+            //    main_button.Margin = new Thickness(0, 400, 0, 0);
+            //} else
+            //{
+            //    title.Margin = new Thickness(0, 0, 0, 500);
+            //    main_button.Margin = new Thickness(0, 500, 0, 0);
+            //}
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

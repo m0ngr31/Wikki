@@ -14,13 +14,13 @@
             <TextBlock Text="[kk]" FontSize="25" VerticalAlignment="Center" Width="185" Margin="20,10,0,10" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="home" Click="goto_Home" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" ></Button>
+            <Button Content="home" Click="goto_Home" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="search" Click="goto_Search" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" ></Button>
+            <Button Content="search" Click="goto_Search" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="about" Click="goto_About" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" ></Button>
+            <Button Content="about" Click="goto_About" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="18" Margin="15,0,0,0" Width="185" HorizontalContentAlignment="Left"></Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

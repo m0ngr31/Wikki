@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Data.Entity;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
+using wikia_Unofficial.Models;
 
 namespace wikia_Unofficial
 {
@@ -31,6 +33,11 @@ namespace wikia_Unofficial
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using (var db = new wikia_Unofficial.Models.wikiaModels())
+            {
+                db.Database.ApplyMigrations();
+            }
         }
 
         /// <summary>
