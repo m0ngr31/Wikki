@@ -8,11 +8,11 @@
     xmlns:panes="using:wikia_Unofficial.Templates"
     mc:Ignorable="d">
     <Page.BottomAppBar>
-        <CommandBar Background="#FF8FB975" Style="{StaticResource CommandBarStyle1}">
+        <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}">
             <CommandBar.Content>
                 <Grid d:IsHidden="True"/>
             </CommandBar.Content>
-            <AppBarButton Click="HamburgerButton_Click">
+            <AppBarButton Click="HamburgerButton_Click" Foreground="White">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                 </AppBarButton.Icon>
@@ -20,15 +20,15 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <SplitView x:Name="MySplitView" DisplayMode="Inline" IsPaneOpen="False" 
+    <SplitView x:Name="MySplitView" DisplayMode="Overlay" IsPaneOpen="False" 
                OpenPaneLength="200" Margin="0" PanePlacement="Right">
         <SplitView.Pane>
             <panes:SplitPanel />
         </SplitView.Pane>
         <SplitView.Content>
             <Grid Background="#f7f7f7">
-                <StackPanel  Height="50" VerticalAlignment="Top">
-                    <TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="50,-50,0,0" Text="[kk]" FontSize="25" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title" />
+                <StackPanel Height="50" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="20,0,0,0" Text="[kk]" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title"/>
                 </StackPanel>
                 <TextBlock Text="SplitView Basic" FontSize="54" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
