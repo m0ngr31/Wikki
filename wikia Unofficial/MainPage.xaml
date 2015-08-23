@@ -9,9 +9,16 @@
     mc:Ignorable="d">
 
     <Grid>
-        
-        <MediaElement AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/endlessCandles.wmv" Stretch="UniformToFill"/>
-        <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title" Margin="0,75,0,0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" SelectionHighlightColor="White"/>
+
+        <!--<MediaElement AutoPlay="True" IsLooping="True" Source="ms-appx:///Assets/endlessCandles.wmv" Stretch="UniformToFill"/>-->
+        <Image Stretch="UniformToFill" Source="ms-appx:///Assets/beach.jpg" RenderTransformOrigin="0.5,0.5" />
+        <Grid Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,75,0,0">
+            <TextBlock Text="[kk]" Foreground="White" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title" Canvas.ZIndex="2"/>
+            <TextBlock Text="[kk]" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Margin="6 6 0 0" Opacity="0.1" />
+            <TextBlock Text="[kk]" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Margin="5 5 0 0" Opacity="0.1" />
+            <TextBlock Text="[kk]" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Margin="4 4 0 0" Opacity="0.1" />
+            <TextBlock Text="[kk]" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Margin="3 3 0 0" Opacity="0.1" />
+        </Grid>
 
         <!--<Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" Width="112" Height="73" Margin="-1,-200,0,0">
             <TextBlock Canvas.ZIndex="1" Text="[kk]" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Canvas.Top="2" Canvas.Left="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -21,9 +28,9 @@
             <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Canvas.Top="3" Canvas.Left="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Canvas>-->
 
-        <Button BorderThickness="2" Name="main_button" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75" Style="{StaticResource NoAnimations}">
+        <Button BorderThickness="0" Name="main_button" Background="#FF56AA46" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75" Style="{StaticResource NoAnimations}" FontSize="18.667" Padding="10, 5, 10, 5">
             Let's get started
         </Button>
-        
+
     </Grid>
 </Page>

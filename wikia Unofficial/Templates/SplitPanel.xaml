@@ -18,7 +18,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10F;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0"/>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10F;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0" FontWeight="Bold"/>
                             <TextBlock Margin="55,0,0,0" VerticalAlignment="Bottom">home</TextBlock>
                         </Grid>
                     </ControlTemplate>
@@ -30,7 +30,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE094;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0"/>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE094;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0" FontWeight="Bold"/>
                             <TextBlock Margin="55,0,0,0">search</TextBlock>
                         </Grid>
                     </ControlTemplate>
@@ -42,7 +42,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0"/>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0" FontWeight="Bold"/>
                             <TextBlock Margin="55,0,0,0">about</TextBlock>
                         </Grid>
                     </ControlTemplate>

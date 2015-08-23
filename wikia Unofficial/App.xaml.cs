@@ -49,6 +49,8 @@ namespace wikia_Unofficial
         {
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
+                //Windows.UI.Color clr = Windows.UI.Color.FromArgb(0xff, 0xf7, 0xf7, 0xf7);
+
                 var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
                 statusBar.BackgroundColor = Windows.UI.Colors.Black;
                 statusBar.ForegroundColor = Windows.UI.Colors.White;
