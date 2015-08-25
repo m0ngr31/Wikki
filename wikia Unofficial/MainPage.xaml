@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:panes="using:wikia_Unofficial.Templates"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid>
 
@@ -28,7 +29,7 @@
             <TextBlock Canvas.ZIndex="1" Text="[kk]" Foreground="White" FontSize="64" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Canvas.Top="3" Canvas.Left="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Canvas>-->
 
-        <Button BorderThickness="0" Name="main_button" Background="#FF56AA46" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75" Style="{StaticResource NoAnimations}" FontSize="18.667" Padding="10, 5, 10, 5">
+        <Button BorderThickness="0" Name="main_button" Background="#FF56AA46" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.ZIndex="1" BorderBrush="White" Foreground="White" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Click="Button_Click" Margin="0,0,0,75" FontSize="18.667" Padding="10, 5, 10, 5" Style="{StaticResource LightGreen}">
             Let's get started
         </Button>
 

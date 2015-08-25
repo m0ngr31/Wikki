@@ -148,6 +148,10 @@
     <Compile Include="Migrations\20150816213706_MyFirstMigration.designer.cs">
       <DependentUpon>20150816213706_MyFirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20150825025159_settings-Migration.cs" />
+    <Compile Include="Migrations\20150825025159_settings-Migration.designer.cs">
+      <DependentUpon>20150825025159_settings-Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\wikiaModelsModelSnapshot.cs" />
     <Compile Include="Models\Classes.cs" />
     <Compile Include="Models\Models.cs" />

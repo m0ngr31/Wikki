@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using wikia_Unofficial.Pages;
+using wikia_Unofficial.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -42,6 +43,23 @@ namespace wikia_Unofficial
         {
             //main_button.Foreground = new SolidColorBrush(Colors.White);
             this.Frame.Navigate(typeof(home));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new wikiaModels())
+            {
+                //If there is no settings object, show the splash screen
+                var settingsExist = db.Settings.Any();
+
+                if(!settingsExist)
+                {
+                    var setting = new Setting { hasRun = true };
+
+                    db.Settings.Add(setting);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }

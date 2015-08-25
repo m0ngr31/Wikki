@@ -31,7 +31,7 @@
                 <StackPanel  Height="50" VerticalAlignment="Top">
                     <Grid Height="47" Name="searchGrid">
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE094;" HorizontalAlignment="Left" FontSize="22" Margin="20,0,0,0" Width="25" Name="searchGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" Height="48" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <TextBox LostFocus="searchBox_LostFocus" Loaded="TextBox_Loaded" Margin="47,0,0,0" FontSize="28" BorderThickness="0,0,0,0" PlaceholderText="search" Background="#FFF7F7F7" Style="{StaticResource TextBoxStyle1}" GotFocus="TextBox_GotFocus" Name="searchBox"/>
+                        <TextBox LostFocus="searchBox_LostFocus" Loaded="TextBox_Loaded" Margin="47,0,0,0" FontSize="28" BorderThickness="0,0,0,0" PlaceholderText="search" Background="#FFF7F7F7" Style="{StaticResource Searchbox}" GotFocus="TextBox_GotFocus" Name="searchBox"/>
                     </Grid>
                     <Grid Height="4" BorderBrush="#56AA46" BorderThickness="2,0,2,2" Margin="15,-10,10,0" Background="Transparent" Name="borderLine"/>
                 </StackPanel>

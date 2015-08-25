@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:panes="using:wikia_Unofficial.Templates"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
     <Page.BottomAppBar>
         <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}">
             <CommandBar.Content>

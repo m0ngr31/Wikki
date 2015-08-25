@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using wikia_Unofficial.Models;
+using wikia_Unofficial.Pages;
 
 namespace wikia_Unofficial
 {
@@ -57,6 +58,14 @@ namespace wikia_Unofficial
                 statusBar.BackgroundOpacity = 1;
             }
 
+            var showSplash = false;
+
+            using (var db = new wikia_Unofficial.Models.wikiaModels())
+            {
+                //If there is no settings object, show the splash screen
+                showSplash = !db.Settings.Any();
+            }
+
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -86,10 +95,11 @@ namespace wikia_Unofficial
 
             if (rootFrame.Content == null)
             {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                //If there is no settings object, show the splash screen
+                if (showSplash)
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                else
+                    rootFrame.Navigate(typeof(home), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

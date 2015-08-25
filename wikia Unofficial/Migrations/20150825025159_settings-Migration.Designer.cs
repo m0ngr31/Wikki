@@ -7,9 +7,19 @@ using wikia_Unofficial.Models;
 namespace wikia_UnofficialMigrations
 {
     [ContextType(typeof(wikiaModels))]
-    partial class wikiaModelsModelSnapshot : ModelSnapshot
+    partial class settingsMigration
     {
-        public override void BuildModel(ModelBuilder builder)
+        public override string Id
+        {
+            get { return "20150825025159_settings-Migration"; }
+        }
+
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta6-13815"; }
+        }
+
+        public override void BuildTargetModel(ModelBuilder builder)
         {
             builder
                 .Annotation("ProductVersion", "7.0.0-beta6-13815");
