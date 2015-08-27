@@ -789,7 +789,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="Button">
-                                                <Grid x:Name="ButtonLayoutGrid" BorderBrush="{ThemeResource TextBoxButtonBorderThemeBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}">
+                                                <Grid x:Name="ButtonLayoutGrid" Background="Transparent">
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="Normal"/>
@@ -803,7 +803,7 @@
                                                             <VisualState x:Name="Pressed">
                                                                 <Storyboard>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonLayoutGrid">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAccentBrush}"/>
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="GlyphElement">
                                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}"/>

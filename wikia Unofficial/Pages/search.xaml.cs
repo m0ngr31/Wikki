@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using wikia_Unofficial.Models;
+using Windows.System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -58,6 +59,14 @@ namespace wikia_Unofficial.Pages
         private void TextBox_Loaded(object sender, RoutedEventArgs e)
         {
             searchBox.Focus(FocusState.Programmatic);
+        }
+
+        private void searchBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter && searchBox.Text.Length > 0)
+            {
+                System.Diagnostics.Debug.WriteLine(searchBox.Text.Length);
+            }
         }
     }
 }

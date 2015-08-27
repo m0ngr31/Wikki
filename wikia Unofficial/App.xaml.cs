@@ -59,11 +59,14 @@ namespace wikia_Unofficial
             }
 
             var showSplash = false;
+            var isWikis = false;
 
             using (var db = new wikia_Unofficial.Models.wikiaModels())
             {
                 //If there is no settings object, show the splash screen
                 showSplash = !db.Settings.Any();
+                isWikis = db.Wikis.Any();
+                db.Dispose();
             }
 
 #if DEBUG
@@ -99,7 +102,12 @@ namespace wikia_Unofficial
                 if (showSplash)
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 else
-                    rootFrame.Navigate(typeof(home), e.Arguments);
+                {
+                    if (isWikis)
+                        rootFrame.Navigate(typeof(home), e.Arguments);
+                    else
+                        rootFrame.Navigate(typeof(search), e.Arguments);
+                }
             }
             // Ensure the current window is active
             Window.Current.Activate();

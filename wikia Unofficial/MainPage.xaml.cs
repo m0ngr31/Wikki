@@ -58,6 +58,7 @@ namespace wikia_Unofficial
 
                     db.Settings.Add(setting);
                     db.SaveChanges();
+                    db.Dispose();
                 }
             }
         }

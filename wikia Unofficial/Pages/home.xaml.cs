@@ -52,11 +52,6 @@ namespace wikia_Unofficial.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             checkSize();
-
-            using (var db = new wikiaModels())
-            {
-
-            }
         }
     }
 }
