@@ -14,6 +14,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using wikia_Unofficial.Models;
 using Windows.System;
+using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,6 +32,8 @@ namespace wikia_Unofficial.Pages
         {
             this.InitializeComponent();
         }
+
+        private IList<WikiSearchResult> WikiSearchResults;
  
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -65,8 +71,45 @@ namespace wikia_Unofficial.Pages
         {
             if (e.Key == VirtualKey.Enter && searchBox.Text.Length > 0)
             {
-                System.Diagnostics.Debug.WriteLine(searchBox.Text.Length);
+                //TODO: Check internet status before making the call
+                //TODO: Create loading indicator and show it as soon as the call is made
+                searchWikia();
             }
+        }
+
+        private async void searchWikia()
+        {
+            WikiSearchResults = new List<WikiSearchResult>();
+
+            var client = new HttpClient();
+
+            var searchString = searchBox.Text.Replace(" ", "+");
+            var list = await client.GetAsync("http://www.wikia.com/api/v1/Wikis/ByString?string=" + searchString + "&limit=25&batch=1&includeDomain=true");
+            var jsonString = await list.Content.ReadAsStringAsync();
+
+            JObject searchResult = JObject.Parse(jsonString);
+
+            IList<JToken> results = searchResult["items"].Children().ToList();
+
+            foreach(JToken result in results)
+            {
+                WikiSearchResult wikiSearchResult = JsonConvert.DeserializeObject<WikiSearchResult>(result.ToString());
+                WikiSearchResults.Add(wikiSearchResult);
+            }
+
+            searchList.ItemsSource = WikiSearchResults;
+
+            //TODO: Show sad face message if nothing was found: WikiSearchResults.Count == 0
+
+            //Close the keyboard programatically
+            //TODO only make it on successful searches
+            searchBox.IsEnabled = false;
+            searchBox.IsEnabled = true;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            WikiSearchResults = new List<WikiSearchResult>();
         }
     }
 }

@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:panes="using:wikia_Unofficial.Templates"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Page.BottomAppBar>
         <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}" Name="commandBar">
@@ -27,31 +28,43 @@
             <panes:SplitPanel />
         </SplitView.Pane>
         <SplitView.Content>
-            <Grid Background="#f7f7f7" >
-                <StackPanel  Height="50" VerticalAlignment="Top">
+            <Grid Background="#f7f7f7">
+                <StackPanel Height="50" VerticalAlignment="Top">
                     <Grid Height="47" Name="searchGrid">
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#57763;" HorizontalAlignment="Left" FontSize="22" Margin="20,0,0,0" Width="25" Name="searchGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" Height="48" VerticalAlignment="Top" FontWeight="Bold"/>
                         <TextBox LostFocus="searchBox_LostFocus" Loaded="TextBox_Loaded" Margin="47,0,0,0" FontSize="28" BorderThickness="0,0,0,0" PlaceholderText="search wikia" Background="#FFF7F7F7" Style="{StaticResource Searchbox}" GotFocus="TextBox_GotFocus" Name="searchBox" KeyUp="searchBox_KeyUp" InputScope="Search"/>
                     </Grid>
                     <Grid Height="4" BorderBrush="#56AA46" BorderThickness="2,0,2,2" Margin="15,-10,10,0" Background="Transparent" Name="borderLine"/>
                 </StackPanel>
-                <StackPanel Margin="0,100,0,0" Name="showMsgs" Visibility="Visible">
+                <StackPanel Margin="0, 100, 0, 0" Name="showMsgs">
                     <StackPanel Name="defaultMsg" Visibility="Visible">
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#57763;" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Find your favorite Wiki</TextBlock>
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Search by name, keyword, or category</TextBlock>
                     </StackPanel>
-                    <StackPanel Name="nothingMsg" Visibility="Collapsed">
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE947;" HorizontalAlignment="Center" FontSize="80" Name="nothingGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Nothing Found</TextBlock>
-                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Please try searching for something else</TextBlock>
+                    <StackPanel Name="errorMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11B;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Error</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknow error. Please try searching for something else</TextBlock>
                     </StackPanel>
                     <StackPanel Name="nointernetMsg" Visibility="Collapsed">
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE791;" HorizontalAlignment="Center" FontSize="80" Name="nointernetGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Can't Connect</TextBlock>
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Try again on a better connection</TextBlock>
                     </StackPanel>
+                    <StackPanel Name="noResults" Visibility="Collapsed">
+                        <TextBlock HorizontalAlignment="Center" FontSize="80" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top">:(</TextBlock>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">No Results</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Please try a different search query</TextBlock>
+                    </StackPanel>
                 </StackPanel>
+                <ListBox Name="searchList" Margin="0, 60, 0, 0" Background="Transparent" Visibility="Collapsed">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </SplitView.Content>
     </SplitView>

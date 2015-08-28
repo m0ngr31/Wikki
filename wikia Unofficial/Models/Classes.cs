@@ -8,7 +8,7 @@ namespace wikia_Unofficial.Models
 {
     public class WikiSearchResult
     {
-        public string Title { get; set; }
+        public string Name { get; set; }
         public int Id { get; set; }
         public string Hub { get; set; }
         public string Language { get; set; }
