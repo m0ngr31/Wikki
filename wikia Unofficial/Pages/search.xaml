@@ -6,8 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:panes="using:wikia_Unofficial.Templates"
-    mc:Ignorable="d"
-    Loaded="Page_Loaded">
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <MenuFlyout x:Key="contextMenu">
+            <MenuFlyoutItem Text="Add to favorites" Tag="add" Click="MenuFlyoutItem_Click_1"/>
+            <MenuFlyoutItem Text="Visit Wiki" Tag="visit" Click="MenuFlyoutItem_Click"/>
+        </MenuFlyout>
+    </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}" Name="commandBar">
@@ -45,7 +51,7 @@
                     <StackPanel Name="errorMsg" Visibility="Collapsed">
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11B;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Error</TextBlock>
-                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknow error. Please try searching for something else</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknown error. Please try again later</TextBlock>
                     </StackPanel>
                     <StackPanel Name="nointernetMsg" Visibility="Collapsed">
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE791;" HorizontalAlignment="Center" FontSize="80" Name="nointernetGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -57,11 +63,28 @@
                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">No Results</TextBlock>
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Please try a different search query</TextBlock>
                     </StackPanel>
+                    <StackPanel Name="loading" Visibility="Collapsed">
+                        <ProgressRing IsActive="True" FontSize="80" Height="80" Width="80"  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                    </StackPanel>
                 </StackPanel>
-                <ListBox Name="searchList" Margin="0, 60, 0, 0" Background="Transparent" Visibility="Collapsed">
+                <ListBox Name="searchList" Margin="0, 60, 0, 0" Background="Transparent" Visibility="Collapsed" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlPageTextBaseMediumBrush}"></Setter>
+                            <Setter Property="BorderThickness" Value="0, 0, 0, 1"></Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                            <StackPanel Orientation="Horizontal" BorderBrush="{ThemeResource SystemControlPageTextBaseMediumBrush}" BorderThickness="0, 0, 0, 1">
+                                <TextBlock Text="{Binding Path=Name}" />
+                                <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource NoAnimations}" Click="Button_Click" FlyoutBase.AttachedFlyout="{StaticResource contextMenu}">
+                                    <StackPanel CornerRadius="100" BorderThickness="1" BorderBrush="{ThemeResource SystemControlPageTextBaseMediumBrush}" Padding="5">
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10C;" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

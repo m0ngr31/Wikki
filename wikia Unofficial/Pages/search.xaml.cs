@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Windows.Networking.Connectivity;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -67,49 +68,128 @@ namespace wikia_Unofficial.Pages
             searchBox.Focus(FocusState.Programmatic);
         }
 
+        private static bool IsConnectedToInternet()
+        {
+            ConnectionProfile connectionProfile = NetworkInformation.GetInternetConnectionProfile();
+            return (connectionProfile != null && connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
+        }
+
         private void searchBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter && searchBox.Text.Length > 0)
             {
-                //TODO: Check internet status before making the call
-                //TODO: Create loading indicator and show it as soon as the call is made
-                searchWikia();
+                if (IsConnectedToInternet())
+                    searchWikia();
+                else
+                    selectVisibility("nointernetMsg");
+
+            }
+        }
+
+        private void selectVisibility(string showMe = "")
+        {
+            defaultMsg.Visibility = Visibility.Collapsed;
+            errorMsg.Visibility = Visibility.Collapsed;
+            nointernetMsg.Visibility = Visibility.Collapsed;
+            noResults.Visibility = Visibility.Collapsed;
+            searchList.Visibility = Visibility.Collapsed;
+            loading.Visibility = Visibility.Collapsed;
+
+            if (showMe.Length > 0)
+            {
+               if(showMe == "defaultMsg")
+                    defaultMsg.Visibility = Visibility.Visible;
+               else if(showMe == "errorMsg")
+                    errorMsg.Visibility = Visibility.Visible;
+               else if(showMe == "nointernetMsg")
+                    nointernetMsg.Visibility = Visibility.Visible;
+               else if(showMe == "noResults")
+                    noResults.Visibility = Visibility.Visible;
+               else if(showMe == "searchList")
+                    searchList.Visibility = Visibility.Visible;
+                else if (showMe == "loading")
+                    loading.Visibility = Visibility.Visible;
             }
         }
 
         private async void searchWikia()
         {
+            selectVisibility("loading");
+
             WikiSearchResults = new List<WikiSearchResult>();
 
-            var client = new HttpClient();
+            try {
+                var searchString = Uri.EscapeDataString(searchBox.Text);
 
-            var searchString = searchBox.Text.Replace(" ", "+");
-            var list = await client.GetAsync("http://www.wikia.com/api/v1/Wikis/ByString?string=" + searchString + "&limit=25&batch=1&includeDomain=true");
-            var jsonString = await list.Content.ReadAsStringAsync();
+                var client = new HttpClient();
+                var list = await client.GetAsync("http://www.wikia.com/api/v1/Wikis/ByString?string=" + searchString + "&limit=25&batch=1&includeDomain=true");
 
-            JObject searchResult = JObject.Parse(jsonString);
+                list.EnsureSuccessStatusCode();
 
-            IList<JToken> results = searchResult["items"].Children().ToList();
+                var jsonString = await list.Content.ReadAsStringAsync();
 
-            foreach(JToken result in results)
-            {
-                WikiSearchResult wikiSearchResult = JsonConvert.DeserializeObject<WikiSearchResult>(result.ToString());
-                WikiSearchResults.Add(wikiSearchResult);
+                JObject searchResult = JObject.Parse(jsonString);
+
+                IList<JToken> results = searchResult["items"].Children().ToList();
+
+                foreach (JToken result in results)
+                {
+                    WikiSearchResult wikiSearchResult = JsonConvert.DeserializeObject<WikiSearchResult>(result.ToString());
+                    WikiSearchResults.Add(wikiSearchResult);
+                }
+
+                searchList.ItemsSource = WikiSearchResults;
+
+                if (WikiSearchResults.Count > 0)
+                {
+                    selectVisibility("searchList");
+                    searchBox.IsEnabled = false;
+                    searchBox.IsEnabled = true;
+                    searchList.ScrollIntoView(searchList.Items[0]);
+                }
+                else
+                    selectVisibility("noResults");
             }
-
-            searchList.ItemsSource = WikiSearchResults;
-
-            //TODO: Show sad face message if nothing was found: WikiSearchResults.Count == 0
-
-            //Close the keyboard programatically
-            //TODO only make it on successful searches
-            searchBox.IsEnabled = false;
-            searchBox.IsEnabled = true;
+            catch (Exception ex)
+            {
+                selectVisibility("errorMsg");
+            }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void TextBlock_Holding(object sender, HoldingRoutedEventArgs e)
         {
-            WikiSearchResults = new List<WikiSearchResult>();
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuFlyoutItem = sender as MenuFlyoutItem;
+            if (menuFlyoutItem != null)
+            {
+                var wiki = menuFlyoutItem.DataContext as WikiSearchResult;
+                if(wiki != null)
+                {
+                    System.Diagnostics.Debug.WriteLine(wiki.Name);
+                }
+            }
+        }
+
+        private void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            var menuFlyoutItem = sender as MenuFlyoutItem;
+            if (menuFlyoutItem != null)
+            {
+                var wiki = menuFlyoutItem.DataContext as WikiSearchResult;
+                if (wiki != null)
+                {
+                    System.Diagnostics.Debug.WriteLine(wiki.Name);
+                }
+            }
         }
     }
 }
