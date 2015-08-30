@@ -6,11 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:panes="using:wikia_Unofficial.Templates"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Page.Resources>
         <MenuFlyout x:Key="contextMenu">
-            <MenuFlyoutItem Text="Add to favorites" Tag="add" Click="MenuFlyoutItem_Click_1"/>
+            <MenuFlyoutItem Text="Add to favorites" Tag="add" Click="addToFavorites"/>
             <MenuFlyoutItem Text="Visit Wiki" Tag="visit" Click="MenuFlyoutItem_Click"/>
         </MenuFlyout>
     </Page.Resources>
@@ -71,20 +72,70 @@
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlPageTextBaseMediumBrush}"></Setter>
-                            <Setter Property="BorderThickness" Value="0, 0, 0, 1"></Setter>
                         </Style>
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" BorderBrush="{ThemeResource SystemControlPageTextBaseMediumBrush}" BorderThickness="0, 0, 0, 1">
-                                <TextBlock Text="{Binding Path=Name}" />
-                                <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource NoAnimations}" Click="Button_Click" FlyoutBase.AttachedFlyout="{StaticResource contextMenu}">
-                                    <StackPanel CornerRadius="100" BorderThickness="1" BorderBrush="{ThemeResource SystemControlPageTextBaseMediumBrush}" Padding="5">
-                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10C;" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                        <TextBlock Text="{Binding Path=Prefered_Name}" FontSize="18" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Path=Desc}" FontSize="14" TextWrapping="NoWrap"/>
+                                        <UserControl>
+                                            <RelativePanel Margin="0, 5, 0, 0">
+                                                <TextBlock FontSize="12" Text="{Binding Path=Hub}" FontWeight="Bold" x:Name="hubText" />
+                                                <TextBlock FontSize="12" x:Name="statsText" >
+                                                    <Run Text=" ("/><Run Text="{Binding Path=Stats.Pages}" FontWeight="Bold" />
+                                                    <Run Text="Pages," />
+                                                    <Run Text="{Binding Path=Stats.Articles}" FontWeight="Bold" />
+                                                    <Run Text="Articles," />
+                                                    <Run Text="{Binding Path=Stats.Images}" FontWeight="Bold" />
+                                                    <Run Text="Images," />
+                                                    <Run Text="{Binding Path=Stats.Videos}" FontWeight="Bold" />
+                                                    <Run Text="Videos)" />
+                                                </TextBlock>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState x:Name="WideScreen">
+                                                            <VisualState.StateTriggers>
+                                                                <AdaptiveTrigger MinWindowWidth="600" />
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Target="statsText.(RelativePanel.RightOf)" Value="hubText" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="NarrowScreen">
+                                                            <VisualState.StateTriggers>
+                                                                <AdaptiveTrigger MinWindowWidth="0" />
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Target="statsText.(RelativePanel.Below)" Value="hubText" />
+                                                                <Setter Target="statsText.Margin" Value="-5, 0, 0, 0" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </RelativePanel>
+                                        </UserControl>
                                     </StackPanel>
+                                </Grid>
+                                <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource NoAnimations}" Click="Button_Click" FlyoutBase.AttachedFlyout="{StaticResource contextMenu}" Grid.Column="1">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10C;" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
                                 </Button>
-                            </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -92,3 +143,4 @@
         </SplitView.Content>
     </SplitView>
 </Page>
+

@@ -35,7 +35,19 @@ namespace wikia_Unofficial.Pages
         }
 
         private IList<WikiSearchResult> WikiSearchResults;
- 
+
+        private List<String> SearchIcons;
+
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
+
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
@@ -122,7 +134,7 @@ namespace wikia_Unofficial.Pages
                 var searchString = Uri.EscapeDataString(searchBox.Text);
 
                 var client = new HttpClient();
-                var list = await client.GetAsync("http://www.wikia.com/api/v1/Wikis/ByString?string=" + searchString + "&limit=25&batch=1&includeDomain=true");
+                var list = await client.GetAsync("http://www.wikia.com/api/v1/Wikis/ByString?expand=1&string=" + searchString + "&limit=25&batch=1&includeDomain=true");
 
                 list.EnsureSuccessStatusCode();
 
@@ -135,17 +147,40 @@ namespace wikia_Unofficial.Pages
                 foreach (JToken result in results)
                 {
                     WikiSearchResult wikiSearchResult = JsonConvert.DeserializeObject<WikiSearchResult>(result.ToString());
+
+                    if (Uri.IsWellFormedUriString(wikiSearchResult.Image, UriKind.Absolute))
+                        wikiSearchResult.Image_Uri = new Uri(wikiSearchResult.Image);
+                    else
+                    {
+                        string rand = SearchIcons[RandomNumber(0, SearchIcons.Count)];
+                        wikiSearchResult.Image_Uri = new Uri(rand);
+                    }
+
+                    if (wikiSearchResult.Headline != null)
+                        wikiSearchResult.Prefered_Name = wikiSearchResult.Headline;
+                    else
+                        wikiSearchResult.Prefered_Name = wikiSearchResult.Name;
+
+                    if (wikiSearchResult.Desc != null && wikiSearchResult.Desc.Length > 0)
+                        wikiSearchResult.Desc = wikiSearchResult.Desc.Split('.')[0];
+                    else
+                        wikiSearchResult.Desc = "No Description";
+
+                    if (wikiSearchResult.Hub == null || wikiSearchResult.Hub.Length == 0)
+                        wikiSearchResult.Hub = "No Hub";
+
                     WikiSearchResults.Add(wikiSearchResult);
                 }
-
-                searchList.ItemsSource = WikiSearchResults;
 
                 if (WikiSearchResults.Count > 0)
                 {
                     selectVisibility("searchList");
+
+                    searchList.ItemsSource = WikiSearchResults;
+                    searchList.ScrollIntoView(searchList.Items[0]);
+
                     searchBox.IsEnabled = false;
                     searchBox.IsEnabled = true;
-                    searchList.ScrollIntoView(searchList.Items[0]);
                 }
                 else
                     selectVisibility("noResults");
@@ -174,22 +209,45 @@ namespace wikia_Unofficial.Pages
                 var wiki = menuFlyoutItem.DataContext as WikiSearchResult;
                 if(wiki != null)
                 {
-                    System.Diagnostics.Debug.WriteLine(wiki.Name);
+                    System.Diagnostics.Debug.WriteLine(wiki.Stats.Articles);
                 }
             }
         }
 
-        private void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
+        private void addToFavorites(object sender, RoutedEventArgs e)
         {
+            //TODO: Show message saying it was successful or not
+
             var menuFlyoutItem = sender as MenuFlyoutItem;
             if (menuFlyoutItem != null)
             {
                 var wiki = menuFlyoutItem.DataContext as WikiSearchResult;
                 if (wiki != null)
                 {
-                    System.Diagnostics.Debug.WriteLine(wiki.Name);
+                    using (var db = new wikiaModels())
+                    {
+                        if(!db.Wikis.Any(a => a.WikiId == wiki.Id))
+                        {
+                            var newFavorite = new Wiki { WikiId = wiki.Id, Url = wiki.Url, WikiName = wiki.Prefered_Name };
+
+                            db.Wikis.Add(newFavorite);
+                            db.SaveChanges();
+                        }
+                    }
                 }
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            SearchIcons = new List<String>(new String[] {
+                "ms-appx:///Assets/SearchIcons/blue.png",
+                "ms-appx:///Assets/SearchIcons/green.png",
+                "ms-appx:///Assets/SearchIcons/light-purple.png",
+                "ms-appx:///Assets/SearchIcons/orange.png",
+                "ms-appx:///Assets/SearchIcons/purple.png",
+                "ms-appx:///Assets/SearchIcons/red.png"
+            });
         }
     }
 }

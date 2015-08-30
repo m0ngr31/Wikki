@@ -61,12 +61,11 @@ namespace wikia_Unofficial
             var showSplash = false;
             var isWikis = false;
 
-            using (var db = new wikia_Unofficial.Models.wikiaModels())
+            using (var db = new wikiaModels())
             {
                 //If there is no settings object, show the splash screen
                 showSplash = !db.Settings.Any();
                 isWikis = db.Wikis.Any();
-                db.Dispose();
             }
 
 #if DEBUG

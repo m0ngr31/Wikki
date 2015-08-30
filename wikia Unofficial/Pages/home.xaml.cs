@@ -35,7 +35,6 @@ namespace wikia_Unofficial.Pages
             using (var db = new wikiaModels())
             {
                 isWikis = db.Wikis.Any();
-                db.Dispose();
             }
         }
 

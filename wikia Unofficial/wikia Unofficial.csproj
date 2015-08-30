@@ -93,6 +93,12 @@
     <Content Include="Assets\beach.jpg" />
     <Content Include="Assets\flowers.jpg" />
     <Content Include="Assets\photography.jpg" />
+    <Content Include="Assets\SearchIcons\blue.png" />
+    <Content Include="Assets\SearchIcons\light-purple.png" />
+    <Content Include="Assets\SearchIcons\orange.png" />
+    <Content Include="Assets\SearchIcons\purple.png" />
+    <Content Include="Assets\SearchIcons\red.png" />
+    <Content Include="Assets\SearchIcons\green.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-150.png" />
@@ -133,8 +139,6 @@
     <Content Include="Assets\Wide310x150Logo\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo\Wide310x150Logo.scale-400.png" />
     <Content Include="Fonts\LinLibertine_R.ttf" />
-    <Content Include="StoreLogo.scale-125.png" />
-    <Content Include="StoreLogo.scale-150.png" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
