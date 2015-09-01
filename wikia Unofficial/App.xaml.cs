@@ -35,7 +35,7 @@ namespace wikia_Unofficial
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            using (var db = new wikia_Unofficial.Models.wikiaModels())
+            using (var db = new wikiaModels())
             {
                 db.Database.ApplyMigrations();
             }

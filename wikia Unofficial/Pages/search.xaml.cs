@@ -159,7 +159,7 @@ namespace wikia_Unofficial.Pages
                     if (wikiSearchResult.Headline != null)
                         wikiSearchResult.Prefered_Name = wikiSearchResult.Headline;
                     else
-                        wikiSearchResult.Prefered_Name = wikiSearchResult.Name;
+                        wikiSearchResult.Prefered_Name = wikiSearchResult.Title;
 
                     if (wikiSearchResult.Desc != null && wikiSearchResult.Desc.Length > 0)
                         wikiSearchResult.Desc = wikiSearchResult.Desc.Split('.')[0];
@@ -189,11 +189,6 @@ namespace wikia_Unofficial.Pages
             {
                 selectVisibility("errorMsg");
             }
-        }
-
-        private void TextBlock_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

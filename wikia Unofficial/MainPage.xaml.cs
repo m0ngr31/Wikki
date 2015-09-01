@@ -24,6 +24,7 @@ namespace wikia_Unofficial
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private bool showSearch;
         public MainPage()
         {
             this.InitializeComponent();
@@ -42,7 +43,10 @@ namespace wikia_Unofficial
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //main_button.Foreground = new SolidColorBrush(Colors.White);
-            this.Frame.Navigate(typeof(home));
+            if (!showSearch)
+                this.Frame.Navigate(typeof(home));
+            else
+                this.Frame.Navigate(typeof(search));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +58,8 @@ namespace wikia_Unofficial
 
                 if(!settingsExist)
                 {
+                    showSearch = !db.Wikis.Any();
+
                     var setting = new Setting { hasRun = true };
 
                     db.Settings.Add(setting);

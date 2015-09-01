@@ -8,6 +8,7 @@
     xmlns:panes="using:wikia_Unofficial.Templates"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
+
     <Page.BottomAppBar>
         <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}">
             <CommandBar.Content>
@@ -29,10 +30,99 @@
         <SplitView.Content>
             <Grid Background="#f7f7f7">
                 <StackPanel Height="50" VerticalAlignment="Top">
-                    <TextBlock HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="20,0,0,0" Text="[kk]" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Text="[kk]" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title"/>
                 </StackPanel>
-                <TextBlock Text="SplitView Basic" FontSize="54" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Margin="0, 100, 0, 0" Name="showMsgs">
+                    <StackPanel Name="noWikis" Visibility="Collapsed" Tapped="goto_Search">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE195;" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">No Wikis saved</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">Head to the search page to find what you are looking for</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="errorMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BA;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Error</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknown error. Please try again</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="nointernetMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE791;" HorizontalAlignment="Center" FontSize="80" Name="nointernetGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Can't Connect</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Try again on a better connection</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="loading" Visibility="Collapsed">
+                        <ProgressRing IsActive="True" FontSize="80" Height="80" Width="80"  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+                <ListBox Name="showWikis" Visibility="Collapsed" Margin="0, 60, 0, 0" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                        <TextBlock Text="{Binding Path=Prefered_Name}" FontSize="18" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Path=Desc}" FontSize="14" TextWrapping="NoWrap"/>
+                                        <UserControl>
+                                            <RelativePanel Margin="0, 5, 0, 0">
+                                                <TextBlock FontSize="12" Text="{Binding Path=Hub}" FontWeight="Bold" x:Name="hubText" />
+                                                <TextBlock FontSize="12" x:Name="statsText" >
+                                                    <Run Text=" ("/><Run Text="{Binding Path=Stats.Pages}" FontWeight="Bold" />
+                                                    <Run Text="Pages," />
+                                                    <Run Text="{Binding Path=Stats.Articles}" FontWeight="Bold" />
+                                                    <Run Text="Articles," />
+                                                    <Run Text="{Binding Path=Stats.Images}" FontWeight="Bold" />
+                                                    <Run Text="Images," />
+                                                    <Run Text="{Binding Path=Stats.Videos}" FontWeight="Bold" />
+                                                    <Run Text="Videos)" />
+                                                </TextBlock>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState x:Name="WideScreen">
+                                                            <VisualState.StateTriggers>
+                                                                <AdaptiveTrigger MinWindowWidth="600" />
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Target="statsText.(RelativePanel.RightOf)" Value="hubText" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="NarrowScreen">
+                                                            <VisualState.StateTriggers>
+                                                                <AdaptiveTrigger MinWindowWidth="0" />
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Target="statsText.(RelativePanel.Below)" Value="hubText" />
+                                                                <Setter Target="statsText.Margin" Value="-5, 0, 0, 0" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </RelativePanel>
+                                        </UserControl>
+                                    </StackPanel>
+                                </Grid>
+                                <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource NoAnimations}" Click="Button_Click" Grid.Column="1">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8BB;" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </SplitView.Content>
     </SplitView>

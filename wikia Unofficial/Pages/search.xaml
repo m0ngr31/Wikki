@@ -50,7 +50,7 @@
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Search by name, keyword, or category</TextBlock>
                     </StackPanel>
                     <StackPanel Name="errorMsg" Visibility="Collapsed">
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11B;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BA;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Error</TextBlock>
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknown error. Please try again later</TextBlock>
                     </StackPanel>

@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace wikia_Unofficial.Models
 {
+    public class WikiItemSearchResult
+    {
+        public WikiSearchResult data { get; set; }
+    }
     public class WikiSearchResult
     {
         public string Name { get; set; }
+        public string Title { get; set; }
         public string Headline { get; set; }
         public string Desc { get; set; }
         public string Image { get; set; }
