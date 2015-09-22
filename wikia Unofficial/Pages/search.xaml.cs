@@ -139,9 +139,7 @@ namespace wikia_Unofficial.Pages
                 list.EnsureSuccessStatusCode();
 
                 var jsonString = await list.Content.ReadAsStringAsync();
-
                 JObject searchResult = JObject.Parse(jsonString);
-
                 IList<JToken> results = searchResult["items"].Children().ToList();
 
                 foreach (JToken result in results)
@@ -188,6 +186,7 @@ namespace wikia_Unofficial.Pages
             catch (Exception ex)
             {
                 selectVisibility("errorMsg");
+                System.Diagnostics.Debug.WriteLine(ex);
             }
         }
 

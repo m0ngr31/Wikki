@@ -26,6 +26,16 @@ namespace wikia_Unofficial.Models
         public WikiStats Stats { get; set; }
         public string Prefered_Name { get; set; }
     }
+    
+    public class ArticleSearchResult
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Type { get; set; }
+        public string Url { get; set; }
+        public string Thumbnail { get; set; }
+        public Uri Image_Uri { get; set; }
+    }
 
     public class WikiStats
     {

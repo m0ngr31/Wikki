@@ -5,7 +5,8 @@
     xmlns:local="using:wikia_Unofficial.Templates"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="slideout_Loaded">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <!--<Button x:Name="HamburgerButton2" FontFamily="Segoe MDL2 Assets"
@@ -13,37 +14,37 @@
                 &#xE700;</Button>-->
             <TextBlock Text="[kk]" FontSize="40" VerticalAlignment="Center" Margin="20,0,0,10" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-            <Button Click="goto_Home" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="25" Width="200" HorizontalContentAlignment="Left">
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Background="Transparent" Name="Home" Height="50">
+            <Button Click="goto_Home" BorderThickness="0" Foreground="#000" FontSize="25" Width="200" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10F;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0" FontWeight="Bold"/>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10F;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0"/>
                             <TextBlock Margin="55,0,0,0" VerticalAlignment="Bottom">home</TextBlock>
                         </Grid>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
-            <Button Click="goto_Search" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="25" Width="200" HorizontalContentAlignment="Left">
+        <StackPanel Orientation="Horizontal" Margin="0,7,0,0" Name="Search" Background="Transparent" Height="50">
+            <Button Click="goto_Search" BorderThickness="0" Foreground="#000" FontSize="25" Width="200" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE094;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0" FontWeight="Bold"/>
-                            <TextBlock Margin="55,0,0,0">search</TextBlock>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#57763;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0"/>
+                            <TextBlock Margin="55,0,0,5">search</TextBlock>
                         </Grid>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
-            <Button Click="goto_About" BorderThickness="0" Foreground="#000" Background="Transparent" FontSize="25" Width="200" HorizontalContentAlignment="Left">
+        <StackPanel Orientation="Horizontal" Margin="0,7,0,0" Background="Transparent" Name="About" Height="50">
+            <Button Click="goto_About" BorderThickness="0" Foreground="#000" FontSize="25" Width="200" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0" FontWeight="Bold"/>
-                            <TextBlock Margin="55,0,0,0">about</TextBlock>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" HorizontalAlignment="Left" FontSize="25" Margin="20,0,0,0"/>
+                            <TextBlock Margin="55,0,0,5" Grid.ColumnSpan="2">about</TextBlock>
                         </Grid>
                     </ControlTemplate>
                 </Button.Template>

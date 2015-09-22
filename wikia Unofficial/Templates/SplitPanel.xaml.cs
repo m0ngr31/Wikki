@@ -5,12 +5,13 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using wikia_Unofficial.Pages;
 
@@ -50,6 +51,34 @@ namespace wikia_Unofficial.Templates
         {
             //this.Frame.Navigate(typeof(article));
             rootFrame.Navigate(typeof(home));
+        }
+
+        public static Brush ColorToBrush(string color)
+        {
+            color = color.Replace("#", "");
+            if (color.Length == 6)
+            {
+                return new SolidColorBrush(ColorHelper.FromArgb(255,
+                    byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
+                    byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
+                    byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber)));
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void slideout_Loaded(object sender, RoutedEventArgs e)
+        {
+            var currentPage = rootFrame.Content as Page;
+
+            if (currentPage.GetType().Name == "home")
+                Home.Background = ColorToBrush("#A7A3A8");
+            else if (currentPage.GetType().Name == "search")
+                Search.Background = ColorToBrush("#A7A3A8");
+            else if (currentPage.GetType().Name == "about")
+                About.Background = ColorToBrush("#A7A3A8");
         }
     }
 }

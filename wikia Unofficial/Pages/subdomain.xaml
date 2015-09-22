@@ -62,6 +62,125 @@
                         <ProgressRing IsActive="True" FontSize="80" Height="80" Width="80"  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                     </StackPanel>
                 </StackPanel>
+                <Hub Margin="0,30,0,0" Name="articlesView" Visibility="Collapsed">
+                    <HubSection Name="PopularList" Width="400" HorizontalAlignment="Left">
+                        <HubSection.Header>
+                            <TextBlock FontSize="28">
+                                Popular Articles
+                            </TextBlock>
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <ListBox Background="Transparent" ItemsSource="{Binding}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                                <TextBlock Text="{Binding Path=Title}" FontSize="18" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        </DataTemplate>
+                    </HubSection>
+                    <HubSection Width="400" Name="TopList" HorizontalAlignment="Left">
+                        <HubSection.Header>
+                            <TextBlock FontSize="28">
+                                Top Articles
+                            </TextBlock>
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <ListBox Background="Transparent" ItemsSource="{Binding}">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                                    <TextBlock Text="{Binding Path=Title}" FontSize="18" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DataTemplate>
+                    </HubSection>
+                    <HubSection Width="400" Name="NewList" HorizontalAlignment="Left">
+                        <HubSection.Header>
+                            <TextBlock FontSize="28">
+                                New Articles
+                            </TextBlock>
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <ListBox Background="Transparent" ItemsSource="{Binding}">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                                    <TextBlock Text="{Binding Path=Title}" FontSize="18" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DataTemplate>
+                    </HubSection>
+                </Hub>
             </Grid>
         </SplitView.Content>
     </SplitView>

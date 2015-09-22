@@ -154,6 +154,7 @@ namespace wikia_Unofficial.Pages
             catch (Exception ex)
             {
                 selectVisibility("errorMsg");
+                System.Diagnostics.Debug.WriteLine(ex);
             }
 
         }
