@@ -217,12 +217,29 @@ namespace wikia_Unofficial.Pages
 
         private void searchWiki_Click(object sender, RoutedEventArgs e)
         {
-
+            if (wiki != null)
+            {
+                this.Frame.Navigate(typeof(subdomainSearch), wiki);
+            }
         }
 
         async private void openInIE_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri(wiki.Url));
+        }
+
+        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var clicked = sender as Grid;
+            if (clicked != null)
+            {
+                var article = clicked.DataContext as ArticleSearchResult;
+                if (article != null)
+                {
+                    var passedArticle = new ArticlePage(article, wiki);
+                    this.Frame.Navigate(typeof(article), passedArticle);
+                }
+            }
         }
     }
 }

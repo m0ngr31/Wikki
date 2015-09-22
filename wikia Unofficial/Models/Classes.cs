@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace wikia_Unofficial.Models
 {
-    public class WikiItemSearchResult
-    {
-        public WikiSearchResult data { get; set; }
-    }
     public class WikiSearchResult
     {
         public string Name { get; set; }
@@ -26,7 +22,15 @@ namespace wikia_Unofficial.Models
         public WikiStats Stats { get; set; }
         public string Prefered_Name { get; set; }
     }
-    
+
+    public class WikiStats
+    {
+        public int Articles { get; set; }
+        public int Pages { get; set; }
+        public int Images { get; set; }
+        public int Videos { get; set; }
+    }
+
     public class ArticleSearchResult
     {
         public int Id { get; set; }
@@ -37,31 +41,16 @@ namespace wikia_Unofficial.Models
         public Uri Image_Uri { get; set; }
     }
 
-    public class WikiStats
+    public class ArticlePage
     {
-        public int Articles { get; set; }
-        public int Pages { get; set; }
-        public int Images { get; set; }
-        public int Videos { get; set; }
-    }
+        public ArticleSearchResult Article { get; set; }
+        public WikiSearchResult Wiki { get; set; }
 
-    public class ArticleInfo
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-    }
-
-    public class PageOverview
-    {
-        public string WikiUrl { get; set; }
-        public int ArticleId { get; set; }
-
-        public PageOverview() { }
-
-        public PageOverview(string Uri, int Id)
+        public ArticlePage(ArticleSearchResult article, WikiSearchResult wiki)
         {
-            WikiUrl = Uri;
-            ArticleId = Id;
+            Article = article;
+            Wiki = wiki;
         }
     }
+
 }

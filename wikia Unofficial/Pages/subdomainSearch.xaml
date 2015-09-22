@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="wikia_Unofficial.Pages.subdomainSearch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:wikia_Unofficial.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:panes="using:wikia_Unofficial.Templates"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Page.BottomAppBar>
+        <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}" Name="commandBar">
+            <CommandBar.Content>
+                <Grid d:IsHidden="True"/>
+            </CommandBar.Content>
+            <AppBarButton Click="HamburgerButton_Click" Foreground="White">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <SplitView x:Name="MySplitView" DisplayMode="Overlay" IsPaneOpen="False" 
+               OpenPaneLength="200" Margin="0" PanePlacement="Right">
+        <SplitView.Pane>
+            <panes:SplitPanel />
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Grid Background="#f7f7f7">
+                <StackPanel Height="50" VerticalAlignment="Top">
+                    <Grid Height="47" Name="searchGrid">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#57763;" HorizontalAlignment="Left" FontSize="22" Margin="20,0,0,0" Width="25" Name="searchGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" Height="48" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBox LostFocus="searchBox_LostFocus" Loaded="TextBox_Loaded" Margin="47,0,0,0" FontSize="28" BorderThickness="0,0,0,0" PlaceholderText="search" Background="#FFF7F7F7" Style="{StaticResource Searchbox}" GotFocus="TextBox_GotFocus" Name="searchBox" InputScope="Search" KeyUp="searchBox_KeyUp"/>
+                    </Grid>
+                    <Grid Height="4" BorderBrush="#56AA46" BorderThickness="2,0,2,2" Margin="15,-10,10,0" Background="Transparent" Name="borderLine"/>
+                </StackPanel>
+                <StackPanel Margin="0, 100, 0, 0" Name="showMsgs">
+                    <StackPanel Name="defaultMsg" Visibility="Visible">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#57763;" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Find an article</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Search by name, keyword, or category</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="errorMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BA;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Error</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknown error. Please try again later</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="nointernetMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE791;" HorizontalAlignment="Center" FontSize="80" Name="nointernetGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Can't Connect</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Try again on a better connection</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="noResults" Visibility="Collapsed">
+                        <TextBlock HorizontalAlignment="Center" FontSize="80" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top">:(</TextBlock>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">No Results</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Please try a different search query</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="loading" Visibility="Collapsed">
+                        <ProgressRing IsActive="True" FontSize="80" Height="80" Width="80"  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+                <ListBox Name="searchList" Margin="0, 60, 0, 0" Background="Transparent" Visibility="Collapsed" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                        <TextBlock Text="{Binding Path=Prefered_Name}" FontSize="18" FontWeight="Bold" />
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
+</Page>
+
