@@ -196,15 +196,15 @@ namespace wikia_Unofficial.Pages
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
 
-        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        private void gotoWiki(object sender, RoutedEventArgs e)
         {
-            var menuFlyoutItem = sender as MenuFlyoutItem;
-            if (menuFlyoutItem != null)
+            var clicked = sender as MenuFlyoutItem;
+            if(clicked != null)
             {
-                var wiki = menuFlyoutItem.DataContext as WikiSearchResult;
+                var wiki = clicked.DataContext as WikiSearchResult;
                 if(wiki != null)
                 {
-                    System.Diagnostics.Debug.WriteLine(wiki.Stats.Articles);
+                    this.Frame.Navigate(typeof(subdomain), wiki);
                 }
             }
         }

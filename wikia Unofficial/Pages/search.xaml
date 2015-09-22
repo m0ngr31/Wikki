@@ -12,7 +12,7 @@
     <Page.Resources>
         <MenuFlyout x:Key="contextMenu">
             <MenuFlyoutItem Text="Add to favorites" Tag="add" Click="addToFavorites"/>
-            <MenuFlyoutItem Text="Visit Wiki" Tag="visit" Click="MenuFlyoutItem_Click"/>
+            <MenuFlyoutItem Text="Visit Wiki" Tag="visit" Click="gotoWiki"/>
         </MenuFlyout>
     </Page.Resources>
 

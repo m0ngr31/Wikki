@@ -34,4 +34,24 @@ namespace wikia_Unofficial.Models
         public int Images { get; set; }
         public int Videos { get; set; }
     }
+
+    public class ArticleInfo
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+    }
+
+    public class PageOverview
+    {
+        public string WikiUrl { get; set; }
+        public int ArticleId { get; set; }
+
+        public PageOverview() { }
+
+        public PageOverview(string Uri, int Id)
+        {
+            WikiUrl = Uri;
+            ArticleId = Id;
+        }
+    }
 }

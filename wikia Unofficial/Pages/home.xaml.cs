@@ -187,7 +187,7 @@ namespace wikia_Unofficial.Pages
             this.Frame.Navigate(typeof(search));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void delete_Wiki(object sender, RoutedEventArgs e)
         {
             var menuFlyoutItem = sender as Button;
             if (menuFlyoutItem != null)
@@ -204,6 +204,19 @@ namespace wikia_Unofficial.Pages
                     }
                     //TODO Add check to see if this is the last one, and if it is, fire off checkSize(). If not, just remove it from the list.
                     checkSize();
+                }
+            }
+        }
+
+        private void goto_Wiki(object sender, TappedRoutedEventArgs e)
+        {
+            var clicked = sender as Grid;
+            if(clicked != null)
+            {
+                var wiki = clicked.DataContext as WikiSearchResult;
+                if(wiki != null)
+                {
+                    this.Frame.Navigate(typeof(subdomain), wiki);
                 }
             }
         }

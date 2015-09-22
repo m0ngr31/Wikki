@@ -65,7 +65,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
+                                <Grid Grid.Column="0" Tapped="goto_Wiki">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
@@ -116,7 +116,7 @@
                                         </UserControl>
                                     </StackPanel>
                                 </Grid>
-                                <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource NoAnimations}" Click="Button_Click" Grid.Column="1">
+                                <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource NoAnimations}" Click="delete_Wiki" Grid.Column="1">
                                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8BB;" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
                                 </Button>
                             </Grid>
