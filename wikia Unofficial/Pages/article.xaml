@@ -6,8 +6,51 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:panes="using:wikia_Unofficial.Templates"
+    xmlns:common="using:wikia_Unofficial.Common"
+    xmlns:triggers="using:WindowsStateTriggers"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <DataTemplate x:Key="sectionTemplate">
+            <UserControl>
+                <common:RichTextColumns>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState x:Name="desktop">
+                                <VisualState.StateTriggers>
+                                    <triggers:DeviceFamilyStateTrigger DeviceFamily="Desktop" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Target="richTB.Width" Value="400" />
+                                    <Setter Target="richTB.Margin" Value="10,0,0,10" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="mobile">
+                                <VisualState.StateTriggers>
+                                    <triggers:DeviceFamilyStateTrigger DeviceFamily="Mobile" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Target="richTB.Width" Value="Auto" />
+                                    <Setter Target="richTB.Margin" Value="10,0,10,10" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <common:RichTextColumns.ColumnTemplate>
+                        <DataTemplate>
+                            <RichTextBlockOverflow Width="300" Margin="20,0,0,10"/>
+                        </DataTemplate>
+                    </common:RichTextColumns.ColumnTemplate>
+                    <RichTextBlock TextAlignment="Justify" TextWrapping="WrapWholeWords" Name="richTB">
+                        <Paragraph>
+                            <Run Text="{Binding}" />
+                        </Paragraph>
+                    </RichTextBlock>
+                </common:RichTextColumns>
+            </UserControl>
+        </DataTemplate>
+    </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar Background="#56AA46" Style="{StaticResource NoElipses}">
@@ -42,8 +85,27 @@
                 <StackPanel  Height="50" VerticalAlignment="Top">
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="20,0,0,0" Name="title" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
                 </StackPanel>
-                <TextBlock Text="SplitView Basic" FontSize="54" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Margin="0, 100, 0, 0" Name="showMsgs">
+                    <StackPanel Name="noWikis" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE195;" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">No Wikis saved</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">Head to the search page to find what you are looking for</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="errorMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BA;" HorizontalAlignment="Center" FontSize="80" Name="errorGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Error</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="Wrap" TextAlignment="Center">There was an unknown error. Please try again</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="nointernetMsg" Visibility="Collapsed">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE791;" HorizontalAlignment="Center" FontSize="80" Name="nointernetGlyph" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Can't Connect</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">Try again on a better connection</TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="loading" Visibility="Collapsed">
+                        <ProgressRing IsActive="True" FontSize="80" Height="80" Width="80"  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Hub Margin="0,30,0,0" Name="articleView" Visibility="Collapsed"/>
             </Grid>
         </SplitView.Content>
     </SplitView>

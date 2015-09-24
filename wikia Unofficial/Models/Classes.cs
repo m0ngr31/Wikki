@@ -41,6 +41,33 @@ namespace wikia_Unofficial.Models
         public Uri Image_Uri { get; set; }
     }
 
+    public class ArticleSection
+    {
+        public string Title { get; set; }
+        public int Level { get; set; }
+        public List<SectionContent> Content { get; set; }
+        public List<SectionImage> Images { get; set; }
+    }
+
+    public class SectionImage
+    {
+        public string Source { get; set; }
+        public string Caption { get; set; }
+    }
+
+    public class SectionContent
+    {
+        public string Type { get; set; }
+        public string Text { get; set; }
+        public List<ListElement> Elements { get; set; }
+    }
+
+    public class ListElement
+    {
+        public string Text { get; set; }
+        public List<ListElement> Elements { get; set; }
+    }
+
     public class ArticlePage
     {
         public ArticleSearchResult Article { get; set; }
@@ -52,5 +79,4 @@ namespace wikia_Unofficial.Models
             Wiki = wiki;
         }
     }
-
 }

@@ -4,7 +4,8 @@
     "EntityFramework.SQLite": "7.0.0-beta6",
     "Microsoft.CodeAnalysis.CSharp": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "Newtonsoft.Json": "7.0.1"
+    "Newtonsoft.Json": "7.0.1",
+    "WindowsStateTriggers": "1.0.2"
   },
   "frameworks": {
     "uap10.0": {}
