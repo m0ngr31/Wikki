@@ -68,6 +68,12 @@ namespace wikia_Unofficial.Models
         public List<ListElement> Elements { get; set; }
     }
 
+    public class ArticleSectionParagraph
+    {
+        public string Text { get; set; }
+        public double Size { get; set; }
+    }
+
     public class ArticlePage
     {
         public ArticleSearchResult Article { get; set; }

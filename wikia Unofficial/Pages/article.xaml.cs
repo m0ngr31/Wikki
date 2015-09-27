@@ -20,6 +20,8 @@ using Newtonsoft.Json.Linq;
 using Windows.Networking.Connectivity;
 using Windows.System;
 using Windows.Graphics.Display;
+using Windows.UI.Xaml.Documents;
+using wikia_Unofficial.Common;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -99,44 +101,85 @@ namespace wikia_Unofficial.Pages
                 JObject result = JObject.Parse(jsonString);
                 IList<JToken> results = result["sections"].Children().ToList();
 
-                foreach(JToken section in results)
+                object sectionTemplate;
+                this.Resources.TryGetValue("sectionTemplate", out sectionTemplate);
+
+                HubSection newSection = new HubSection();
+
+                //System.Text.StringBuilder sectionContent = new System.Text.StringBuilder();
+
+                List<ArticleSectionParagraph> sectionContent = new List<ArticleSectionParagraph>();
+
+                UserControl bob3 = new UserControl();
+                Common.RichTextColumns bob2 = new Common.RichTextColumns();
+
+                DataTemplate bob4 = new DataTemplate();
+                RichTextBlockOverflow bob5 = new RichTextBlockOverflow();
+
+                foreach (JToken section in results)
                 {
                     ArticleSection articleSection = JsonConvert.DeserializeObject<ArticleSection>(section.ToString());
 
-                    HubSection newSection = new HubSection();
+                    ArticleSectionParagraph sectionParagraph = new ArticleSectionParagraph();
+                    sectionParagraph.Size = 14;
 
-                    TextBlock headerText = new TextBlock();
-                    headerText.FontSize = 28;
-                    headerText.Text = articleSection.Title;
-                    headerText.Margin = new Thickness {Left = 10, Top = 0, Right = 0, Bottom = 0};
-                    newSection.Header = headerText;
+                    if (articleSection.Level < 3)
+                    {
+                        newSection = new HubSection();
+                        TextBlock headerText = new TextBlock();
+                        headerText.FontSize = 28;
+                        headerText.Text = articleSection.Title;
+                        headerText.Margin = new Thickness { Left = 10, Top = 0, Right = 0, Bottom = 0 };
+                        newSection.Header = headerText;
+                        newSection.ContentTemplate = sectionTemplate as DataTemplate;
 
-                    List<TextBlock> sectionContent = new List<TextBlock>();
+                        articleView.Sections.Add(newSection);
+
+                        sectionContent = new List<ArticleSectionParagraph>();
+                    }
+                    else
+                    {
+                        ArticleSectionParagraph sectionHeader = new ArticleSectionParagraph();
+                        sectionHeader.Text += articleSection.Title.ToString();
+                        sectionHeader.Text += "\n\n";
+                        sectionHeader.Size = 20;
+                        sectionContent.Add(sectionHeader);
+                    }
 
                     foreach(SectionContent content in articleSection.Content)
                     {
                         if (content.Type == "paragraph")
                         {
-                            TextBlock newParagraph = new TextBlock();
-                            newParagraph.Text = content.Text;
-                            sectionContent.Add(newParagraph);
+                            //sectionContent.AppendLine(content.Text.ToString());
+                            //sectionContent.AppendLine();
+                            sectionParagraph.Text += content.Text.ToString() + "\n\n";
+                        } else if (content.Type == "list")
+                        {
+                            foreach(ListElement subcontent in content.Elements)
+                            {
+                                //sectionContent.AppendLine("   \x2022 " + subcontent.Text.ToString());
+                                sectionParagraph.Text += "   \x2022 " + subcontent.Text.ToString() + "\n";
+
+                                foreach (ListElement subList in subcontent.Elements)
+                                {
+                                    //sectionContent.AppendLine("      \x2023 " + subList.Text.ToString());
+                                    sectionParagraph.Text += "      \x2023 " + subList.Text.ToString() + "\n";
+                                }
+                            }
                         }
-                        //System.Diagnostics.Debug.WriteLine(content.Text);
                     }
 
-                    //DataTemplate sectionTemplate = new DataTemplate() { VisualTree = sectionContent };
-                    String text1 = "There are also several multiplayer improvements. Bleszinski promised Gears of War 3 will include better region filtering to allow for less laggy games. Fans also saw the return of Gridlock. The biggest addition to multiplayer is 4-player online co-op in the story mode.\n\nGears of War 3 includes a mode called Beast.It is the opposite of Horde Mode. In Horde Mode, you are the COG combating the Locust, but in Beast, you are the Locust combating the COG.In Beast mode, you earn money for killing your enemies.Once you get enough money, you are able to upgrade your character to a specific class, such as Boomers, Corpsers and even Berserkers. A new Multiplayer mode called \"Capture The Leader\" is a combination of Guardian and Submission.The Leader has an improved Tat-com which can see their enemies no matter where they are.There are no capture points in this new game, just hold the enemy's leader as the timer counts down. There is a \"newbie\" playlist where if you have no Gears achievements or little xp, you will play in a playlist with other \"newbies\". After a little while of playing you cannot play in this playlist anymore. Gears of War 3 also features unlockables by achievements similar to Gears of War 2. Achievement unlocks include completing Gears 1 campaign and Gears 2 campaign and reaching level 100 in multiplayer.[5] this game also have update.";
+                    RichTextBlock bob = new RichTextBlock();
+                    Paragraph bob1 = new Paragraph();
 
-                    object sectionTemplate;
-                    this.Resources.TryGetValue("sectionTemplate", out sectionTemplate);
-                    newSection.ContentTemplate = sectionTemplate as DataTemplate;
-                    newSection.DataContext = text1;
+                    bob.Blocks.Add(bob1);
 
-                    articleView.Sections.Add(newSection);
-                    Article.Add(articleSection);
+                    sectionContent.Add(sectionParagraph);
+
+                    //newSection.DataContext = sectionContent.ToString();
+                    newSection.DataContext = sectionContent;
                 }
 
-                
                 selectVisibility("articleView");
             }
             catch (Exception ex)

@@ -12,6 +12,16 @@
     Loaded="Page_Loaded">
 
     <Page.Resources>
+        <Style x:Key="ListViewDisablePressAnimationStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ContentPresenter>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <DataTemplate x:Key="sectionTemplate">
             <UserControl>
                 <common:RichTextColumns>
@@ -39,12 +49,30 @@
                     </VisualStateManager.VisualStateGroups>
                     <common:RichTextColumns.ColumnTemplate>
                         <DataTemplate>
-                            <RichTextBlockOverflow Width="300" Margin="20,0,0,10"/>
+                            <RichTextBlockOverflow Width="400" Margin="20,0,0,10"/>
                         </DataTemplate>
                     </common:RichTextColumns.ColumnTemplate>
                     <RichTextBlock TextAlignment="Justify" TextWrapping="WrapWholeWords" Name="richTB">
                         <Paragraph>
-                            <Run Text="{Binding}" />
+                            <!--<Run Text="{Binding}" />-->
+                            <InlineUIContainer>
+                                <ListView ItemsSource="{Binding}" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ListViewDisablePressAnimationStyle}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <RichTextBlock TextAlignment="Justify" TextWrapping="WrapWholeWords">
+                                                <Paragraph>
+                                                    <Run Text="{Binding Text}" FontSize="{Binding Size}"/>
+                                                </Paragraph>
+                                            </RichTextBlock>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </InlineUIContainer>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run>
+                                "oh hello"
+                            </Run>
                         </Paragraph>
                     </RichTextBlock>
                 </common:RichTextColumns>
