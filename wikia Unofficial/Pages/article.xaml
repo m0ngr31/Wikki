@@ -12,7 +12,7 @@
     Loaded="Page_Loaded">
 
     <Page.Resources>
-        <Style x:Key="ListViewDisablePressAnimationStyle" TargetType="ListViewItem">
+        <!--<Style x:Key="ListViewDisablePressAnimationStyle" TargetType="ListViewItem">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
@@ -21,7 +21,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
         <DataTemplate x:Key="sectionTemplate">
             <UserControl>
                 <common:RichTextColumns>
@@ -53,9 +53,9 @@
                         </DataTemplate>
                     </common:RichTextColumns.ColumnTemplate>
                     <RichTextBlock TextAlignment="Justify" TextWrapping="WrapWholeWords" Name="richTB">
-                        <Paragraph>
-                            <!--<Run Text="{Binding}" />-->
-                            <InlineUIContainer>
+                        <Paragraph Margin="0,0,0,0">
+                            <Run Text="{Binding}" FontWeight="Bold"/>
+                            <!--<InlineUIContainer>
                                 <ListView ItemsSource="{Binding}" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ListViewDisablePressAnimationStyle}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
@@ -67,7 +67,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                            </InlineUIContainer>
+                            </InlineUIContainer>-->
                         </Paragraph>
                         <Paragraph>
                             <Run>
