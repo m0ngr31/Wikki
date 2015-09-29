@@ -19,6 +19,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.Networking.Connectivity;
+using NotificationsExtensions.Toasts;
+using Windows.UI.Notifications;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,6 +35,24 @@ namespace wikia_Unofficial.Pages
         {
             this.InitializeComponent();
         }
+
+        ToastContent content = new ToastContent()
+        {
+            Launch = "added",
+
+            Visual = new ToastVisual()
+            {
+                TitleText = new ToastText()
+                {
+                    Text = "Added"
+                },
+
+                BodyTextLine1 = new ToastText()
+                {
+                    Text = "Added wiki to favorites."
+                }
+            }
+        };
 
         private IList<WikiSearchResult> WikiSearchResults;
 
@@ -94,7 +114,6 @@ namespace wikia_Unofficial.Pages
                     searchWikia();
                 else
                     selectVisibility("nointernetMsg");
-
             }
         }
 
@@ -226,6 +245,10 @@ namespace wikia_Unofficial.Pages
 
                             db.Wikis.Add(newFavorite);
                             db.SaveChanges();
+
+                            var doc = new ToastNotification(content.GetXml());
+                            doc.ExpirationTime = DateTime.Now.AddSeconds(2);
+                            ToastNotificationManager.CreateToastNotifier().Show(doc);
                         }
                     }
                 }
@@ -242,6 +265,19 @@ namespace wikia_Unofficial.Pages
                 "ms-appx:///Assets/SearchIcons/purple.png",
                 "ms-appx:///Assets/SearchIcons/red.png"
             });
+        }
+
+        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var clicked = sender as Grid;
+            if (clicked != null)
+            {
+                var wiki = clicked.DataContext as WikiSearchResult;
+                if (wiki != null)
+                {
+                    this.Frame.Navigate(typeof(subdomain), wiki);
+                }
+            }
         }
     }
 }

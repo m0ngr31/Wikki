@@ -499,6 +499,14 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "Remotion.Linq/2.0.0-alpha-004": {
         "compile": {
           "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.dll": {}
@@ -2392,6 +2400,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -4320,6 +4336,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -6255,6 +6279,14 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "Remotion.Linq/2.0.0-alpha-004": {
         "compile": {
           "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.dll": {}
@@ -8181,6 +8213,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -10116,6 +10156,14 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "Remotion.Linq/2.0.0-alpha-004": {
         "compile": {
           "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.dll": {}
@@ -12042,6 +12090,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10240.0.6": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -14421,6 +14477,27 @@
         "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
         "tools/install.ps1",
         "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "NotificationsExtensions.Win10/10240.0.6": {
+      "sha512": "kh33b5LBs1jLRpYZ66SaicwcSg/vwhdZGfmKGuBTBgf7AwoycYYsN5DgkaJjJhxDaak1D21/ZzhLH3HHjiRQaw==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "NotificationsExtensions.Win10.nuspec",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
+        "lib/uap10.0/NotificationsExtensions.winmd",
+        "lib/uap10.0/NotificationsExtensions.pri",
+        "lib/uap10.0/NotificationsExtensions.pdb",
+        "lib/uap10.0/NotificationsExtensions.xml",
+        "lib/uap10.0/NotificationsExtensions.winmd.xml",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
+        "package/services/metadata/core-properties/f4c9f1cad9444e4abe5b980736afea18.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -17180,6 +17257,7 @@
       "Microsoft.CodeAnalysis.CSharp >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 7.0.1",
+      "NotificationsExtensions.Win10 >= 10240.0.6",
       "WindowsStateTriggers >= 1.0.2"
     ],
     "UAP,Version=v10.0": []

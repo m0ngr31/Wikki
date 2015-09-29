@@ -143,20 +143,17 @@ namespace wikia_Unofficial.Pages
             }
         }
 
-        static string CleanInput(string strIn)
+        public static string RemoveSpecialCharacters(string str)
         {
-            // Replace invalid characters with empty strings.
-            try
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (char c in str)
             {
-                return Regex.Replace(strIn, @"[^\w\.@-@ ]", "",
-                                     RegexOptions.None, TimeSpan.FromSeconds(1.5));
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_' || c == '-' || c == ',' || c == ' ' || c == '\'' || c == ')' || c == '(' || c == '\\' || c == ']' || c == '[' || c == '/')
+                {
+                    sb.Append(c);
+                }
             }
-            // If we timeout when replacing invalid characters, 
-            // we should return Empty.
-            catch (RegexMatchTimeoutException)
-            {
-                return String.Empty;
-            }
+            return sb.ToString();
         }
 
         async private void loadArticle()
@@ -190,34 +187,34 @@ namespace wikia_Unofficial.Pages
                         newSection = new HubSection();
                         TextBlock headerText = new TextBlock();
                         headerText.FontSize = 28;
-                        headerText.Text = CleanInput(articleSection.Title);
+                        headerText.Text = RemoveSpecialCharacters(articleSection.Title);
                         headerText.Margin = new Thickness { Left = 10, Top = 0, Right = 0, Bottom = 0 };
                         newSection.Header = headerText;
 
-                        if(articleSection.Title.ToString() != "References" && articleSection.Title.ToString() != "See also" && articleSection.Title.ToString() != "External links")
+                        if(articleSection.Title.ToString() != "References" && articleSection.Title.ToString() != "See also" && articleSection.Title.ToString() != "External links" && articleSection.Title.ToString() != "External Links" && articleSection.Title.ToString() != "See Also")
                             articleView.Sections.Add(newSection);
                         
                         sectionContent = new System.Text.StringBuilder();
                     }
                     else
                     {
-                        sectionContent.Append("<Paragraph FontSize=\"20\" FontWeight=\"Bold\"><Run>" + CleanInput(articleSection.Title.ToString()) + "\n</Run></Paragraph>");
+                        sectionContent.Append("<Paragraph FontSize=\"20\" FontWeight=\"Bold\"><Run>" + RemoveSpecialCharacters(articleSection.Title.ToString()) + "\n</Run></Paragraph>");
                     }
 
                     foreach(SectionContent content in articleSection.Content)
                     {
                         if (content.Type == "paragraph")
                         {
-                            sectionContent.Append("<Paragraph><Run>" + CleanInput(content.Text.ToString()) + "</Run></Paragraph><Paragraph></Paragraph>");
+                            sectionContent.Append("<Paragraph><Run>" + RemoveSpecialCharacters(content.Text.ToString()) + "</Run></Paragraph><Paragraph></Paragraph>");
                         } else if (content.Type == "list")
                         {
                             foreach(ListElement subcontent in content.Elements)
                             {
-                                sectionContent.Append("<Paragraph Margin=\"10,0,0,0\"><Run>\x2022 " + CleanInput(subcontent.Text.ToString()) + "</Run></Paragraph>");
+                                sectionContent.Append("<Paragraph Margin=\"10,0,0,0\"><Run>\x2022 " + RemoveSpecialCharacters(subcontent.Text.ToString()) + "</Run></Paragraph>");
 
                                 foreach (ListElement subList in subcontent.Elements)
                                 {
-                                    sectionContent.Append("<Paragraph Margin=\"20,0,0,0\"><Run>\x2023 " + CleanInput(subList.Text.ToString()) + "</Run></Paragraph>");
+                                    sectionContent.Append("<Paragraph Margin=\"20,0,0,0\"><Run>\x2023 " + RemoveSpecialCharacters(subList.Text.ToString()) + "</Run></Paragraph>");
                                 }
                             }
                         }

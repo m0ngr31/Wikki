@@ -17,6 +17,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.Networking.Connectivity;
+using NotificationsExtensions.Toasts;
+using Windows.UI.Notifications;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,8 +34,28 @@ namespace wikia_Unofficial.Pages
             this.InitializeComponent();
         }
 
+        ToastContent content = new ToastContent()
+        {
+            Launch = "deleted",
+
+            Visual = new ToastVisual()
+            {
+                TitleText = new ToastText()
+                {
+                    Text = "Deleted"
+                },
+
+                BodyTextLine1 = new ToastText()
+                {
+                    Text = "Removed wiki from favorites."
+                }               
+            }
+        };
+
         private List<String> SearchIcons;
         private IList<WikiSearchResult> WikiSearchResults;
+
+        private WikiSearchResult selectedWiki;
 
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
@@ -198,13 +220,25 @@ namespace wikia_Unofficial.Pages
                 {
                     using (var db = new wikiaModels())
                     {
-                        var deleteMe = db.Wikis.Single(a => a.WikiId == wiki.Id);
-                        
-                        db.Wikis.Remove(deleteMe);
-                        db.SaveChanges();
+                        var deleteMe = db.Wikis.SingleOrDefault(a => a.WikiId == wiki.Id);
+
+                        if (deleteMe != null)
+                        {
+                            db.Wikis.Remove(deleteMe);
+                            db.SaveChanges();
+
+                            if (db.Wikis.Count() == 0)
+                                checkSize();
+
+                            WikiSearchResults.Remove(WikiSearchResults.FirstOrDefault(x => x.Id == wiki.Id));
+                            showWikis.ItemsSource = null;
+                            showWikis.ItemsSource = WikiSearchResults;
+
+                            var doc = new ToastNotification(content.GetXml());
+                            doc.ExpirationTime = DateTime.Now.AddSeconds(2); 
+                            ToastNotificationManager.CreateToastNotifier().Show(doc);
+                        }
                     }
-                    //TODO Add check to see if this is the last one, and if it is, fire off checkSize(). If not, just remove it from the list.
-                    checkSize();
                 }
             }
         }
@@ -220,6 +254,11 @@ namespace wikia_Unofficial.Pages
                     this.Frame.Navigate(typeof(subdomain), wiki);
                 }
             }
+        }
+
+        private void searchWiki_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(search));
         }
     }
 }

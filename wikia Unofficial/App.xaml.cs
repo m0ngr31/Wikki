@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using wikia_Unofficial.Models;
 using wikia_Unofficial.Pages;
+using Windows.UI.Core;
 
 namespace wikia_Unofficial
 {
@@ -85,6 +86,7 @@ namespace wikia_Unofficial
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.Navigated += OnNavigated;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -93,6 +95,13 @@ namespace wikia_Unofficial
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    rootFrame.CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
             }
 
             if (rootFrame.Content == null)
@@ -122,6 +131,15 @@ namespace wikia_Unofficial
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            // Each time a navigation event occurs, update the Back button's visibility
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                ((Frame)sender).CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
+        }
+
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
         /// without knowing whether the application will be terminated or resumed with the contents
@@ -134,6 +152,17 @@ namespace wikia_Unofficial
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.CanGoBack)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
         }
     }
 }

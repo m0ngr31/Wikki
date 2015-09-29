@@ -61,7 +61,37 @@
                         <ProgressRing IsActive="True" FontSize="80" Height="80" Width="80"  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                     </StackPanel>
                 </StackPanel>
-                <ListBox Name="searchList" Margin="0, 60, 0, 0" Background="Transparent" Visibility="Collapsed" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox Background="Transparent" Name="searchList" Margin="0, 60, 0, 0" Visibility="Collapsed" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Tapped="Grid_Tapped">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                        <TextBlock Text="{Binding Path=Title}" FontSize="18" />
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <!--<ListBox Name="searchList" Margin="0, 60, 0, 0" Background="Transparent" Visibility="Collapsed" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -90,7 +120,7 @@
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+                </ListBox>-->
             </Grid>
         </SplitView.Content>
     </SplitView>

@@ -19,6 +19,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.Networking.Connectivity;
+using NotificationsExtensions.Toasts;
+using Windows.UI.Notifications;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,6 +35,24 @@ namespace wikia_Unofficial.Pages
         {
             this.InitializeComponent();
         }
+
+        ToastContent content = new ToastContent()
+        {
+            Launch = "added",
+
+            Visual = new ToastVisual()
+            {
+                TitleText = new ToastText()
+                {
+                    Text = "Added"
+                },
+
+                BodyTextLine1 = new ToastText()
+                {
+                    Text = "Added wiki to favorites."
+                }
+            }
+        };
 
         public WikiSearchResult wiki;
 
@@ -162,7 +182,8 @@ namespace wikia_Unofficial.Pages
                         articleSearchResult.Image_Uri = new Uri(rand);
                     }
 
-                    PopularArticles.Add(articleSearchResult);
+                    if (articleSearchResult.Type == "article" || articleSearchResult.Type == "Article")
+                        PopularArticles.Add(articleSearchResult);
                 }
 
                 foreach (JToken result in newResults)
@@ -177,6 +198,7 @@ namespace wikia_Unofficial.Pages
                         articleSearchResult.Image_Uri = new Uri(rand);
                     }
 
+                    //if (articleSearchResult.Type == "article" || articleSearchResult.Type == "Article")
                     NewArticles.Add(articleSearchResult);
                 }
 
@@ -192,7 +214,8 @@ namespace wikia_Unofficial.Pages
                         articleSearchResult.Image_Uri = new Uri(rand);
                     }
 
-                    TopArticles.Add(articleSearchResult);
+                    if(articleSearchResult.Type == "article" || articleSearchResult.Type == "Article")
+                        TopArticles.Add(articleSearchResult);
                 }
 
                 PopularList.DataContext = PopularArticles;
@@ -212,7 +235,18 @@ namespace wikia_Unofficial.Pages
         override protected void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
+            {
                 wiki = (WikiSearchResult)e.Parameter;
+
+                using (var db = new wikiaModels())
+                {
+                    if (db.Wikis.Any(a => a.WikiId == wiki.Id))
+                    {
+                        favoriteButton.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+                
         }
 
         private void searchWiki_Click(object sender, RoutedEventArgs e)
@@ -238,6 +272,29 @@ namespace wikia_Unofficial.Pages
                 {
                     var passedArticle = new ArticlePage(article, wiki);
                     this.Frame.Navigate(typeof(article), passedArticle);
+                }
+            }
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (wiki != null)
+            {
+                using (var db = new wikiaModels())
+                {
+                    if (!db.Wikis.Any(a => a.WikiId == wiki.Id))
+                    {
+                        var newFavorite = new Wiki { WikiId = wiki.Id, Url = wiki.Url, WikiName = wiki.Prefered_Name };
+
+                        db.Wikis.Add(newFavorite);
+                        db.SaveChanges();
+
+                        var doc = new ToastNotification(content.GetXml());
+                        doc.ExpirationTime = DateTime.Now.AddSeconds(2);
+                        ToastNotificationManager.CreateToastNotifier().Show(doc);
+
+                        favoriteButton.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }

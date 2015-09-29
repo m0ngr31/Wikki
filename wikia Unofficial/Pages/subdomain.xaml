@@ -14,6 +14,11 @@
             <CommandBar.Content>
                 <Grid d:IsHidden="True"/>
             </CommandBar.Content>
+            <AppBarButton Click="AppBarButton_Click" Foreground="White" Name="favoriteButton">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE1CF;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton Click="openInIE_Click" Foreground="White">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE12B;" />
@@ -71,35 +76,35 @@
                         </HubSection.Header>
                         <DataTemplate>
                             <ListBox Background="Transparent" ItemsSource="{Binding}">
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Tapped="Grid_Tapped">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Tapped="Grid_Tapped">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Rectangle Grid.Column="0" Width="65" Height="65" >
-                                                <Rectangle.Fill>
-                                                    <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
-                                                </Rectangle.Fill>
-                                            </Rectangle>
-                                            <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
-                                                <TextBlock Text="{Binding Path=Title}" FontSize="18" />
-                                            </StackPanel>
+                                            <Grid Grid.Column="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Rectangle Grid.Column="0" Width="65" Height="65" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding Path=Image_Uri}" />
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <StackPanel Grid.Column="1" Margin="10, -5, 0, 0" Orientation="Vertical">
+                                                    <TextBlock Text="{Binding Path=Title}" FontSize="18" />
+                                                </StackPanel>
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </DataTemplate>
                     </HubSection>
                     <HubSection Width="400" Name="TopList" HorizontalAlignment="Left">
