@@ -28,11 +28,32 @@
         </SplitView.Pane>
         <SplitView.Content>
             <Grid Background="#f7f7f7">
-                <StackPanel  Height="50" VerticalAlignment="Top">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="20,0,0,0" Text="about" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
+                <StackPanel Margin="0, 50, 0, 0" Name="showMsgs">
+                    <StackPanel Name="defaultMsg" Visibility="Visible">
+                        <TextBlock FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" Text="[kk]"/>
+                        <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">About Wikki</TextBlock>
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="WrapWholeWords" TextAlignment="Center">Wikki is an un-official app for viewing content from Wikia. I made this app both free of charge and Ad-free purely for the benefit of the community.</TextBlock>
+                        <TextBlock />
+                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="WrapWholeWords" TextAlignment="Center">If you have any questions or suggestions, hit me up on Twitter or E-mail:</TextBlock>
+                        <TextBlock />
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontFamily="{StaticResource FontAwesome}" FontSize="20" Text="&#xf099;" Grid.Column="0" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextAlignment="Right" VerticalAlignment="Bottom"/>
+                            <TextBlock FontSize="20" Text="@m0ngr31" Grid.Column="1" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextAlignment="Right" Margin="10,0,0,0"/>
+                        </Grid>
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontFamily="{StaticResource FontAwesome}" FontSize="20" Text="&#xf0e0;" Grid.Column="0" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextAlignment="Right" VerticalAlignment="Bottom"/>
+                            <TextBlock FontSize="20" Text="joeipson@gmail.com" Grid.Column="1" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextAlignment="Right" Margin="10,0,0,0"/>
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
-                <TextBlock Text="SplitView Basic" FontSize="54" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </SplitView.Content>
     </SplitView>
