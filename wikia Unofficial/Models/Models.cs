@@ -39,7 +39,7 @@ namespace wikia_Unofficial.Models
             modelBuilder.Entity<Favorite>().Property(b => b.Url).Required();
             modelBuilder.Entity<Favorite>().Property(b => b.FavoriteName).Required();
             modelBuilder.Entity<Favorite>().Property(b => b.WikiId).Required();
-            modelBuilder.Entity<Favorite>().Property(b => b.FavoriteId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Favorite>().Property(b => b.Id).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Setting>().Property(b => b.hasRun).Required();
             modelBuilder.Entity<Setting>().Property(b => b.Id).ValueGeneratedOnAdd();
@@ -56,7 +56,7 @@ namespace wikia_Unofficial.Models
 
     public class Favorite
     {
-        public int FavoriteId { get; set; }
+        public int Id { get; set; }
         public string Url { get; set; }
         public string FavoriteName { get; set; }
         public int WikiId { get; set; }

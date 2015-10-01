@@ -35,7 +35,7 @@
         <SplitView.Content>
             <Grid Background="#f7f7f7">
                 <StackPanel Height="50" VerticalAlignment="Top">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Text="[kk]" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" Name="title"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Text="[kk]" FontSize="40" FontFamily="\Fonts\LinLibertine_R.ttf#Linux Libertine" Name="title"/>
                 </StackPanel>
                 <StackPanel Margin="0, 100, 0, 0" Name="showMsgs">
                     <StackPanel Name="noWikis" Visibility="Collapsed" Tapped="goto_Search">

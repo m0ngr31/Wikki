@@ -30,7 +30,7 @@
             <Grid Background="#f7f7f7">
                 <StackPanel Margin="0, 50, 0, 0" Name="showMsgs">
                     <StackPanel Name="defaultMsg" Visibility="Visible">
-                        <TextBlock FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" Text="[kk]"/>
+                        <TextBlock FontFamily="\Fonts\LinLibertine_R.ttf#Linux Libertine" HorizontalAlignment="Center" FontSize="80" Name="searchGlyph2" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" VerticalAlignment="Top" Text="[kk]"/>
                         <TextBlock FontSize="24" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}">About Wikki</TextBlock>
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" TextWrapping="WrapWholeWords" TextAlignment="Center">Wikki is an un-official app for viewing content from Wikia. I made this app both free of charge and Ad-free purely for the benefit of the community.</TextBlock>
                         <TextBlock />

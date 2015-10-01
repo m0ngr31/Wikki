@@ -22,10 +22,17 @@
       the application package. The asterisks are not wildcards.
     -->
     <Assembly Name="*Application*" Dynamic="Required All" />
+
+    <Type Name="Microsoft.Data.Entity.Metadata.Internal.ClrAccessorSource{Microsoft.Data.Entity.Metadata.Internal.IClrPropertySetter}">
+      <MethodInstantiation Name="CreateGeneric" Arguments="wikia_Unofficial.Models.wikiaModels,Microsoft.Data.Entity.DbSet{wikia_Unofficial.Models.Wiki},Microsoft.Data.Entity.DbSet{wikia_Unofficial.Models.Wiki}" Dynamic="Required" />
+      <MethodInstantiation Name="CreateGeneric" Arguments="wikia_Unofficial.Models.wikiaModels,Microsoft.Data.Entity.DbSet{wikia_Unofficial.Models.Favorite},Microsoft.Data.Entity.DbSet{wikia_Unofficial.Models.Favorite}" Dynamic="Required" />
+      <MethodInstantiation Name="CreateGeneric" Arguments="wikia_Unofficial.Models.wikiaModels,Microsoft.Data.Entity.DbSet{wikia_Unofficial.Models.Setting},Microsoft.Data.Entity.DbSet{wikia_Unofficial.Models.Setting}" Dynamic="Required" />
+    </Type>
     
     
     <!-- Add your application specific runtime directives here. -->
 
 
   </Application>
+
 </Directives>

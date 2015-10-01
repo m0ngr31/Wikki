@@ -111,7 +111,7 @@
         <SplitView.Content>
             <Grid Background="#f7f7f7">
                 <StackPanel  Height="50" VerticalAlignment="Top">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="20,0,0,0" Name="title" FontSize="40" FontFamily="/Fonts/LinLibertine_R.ttf#Linux Libertine" />
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="20,0,0,0" Name="title" FontSize="40" FontFamily="\Fonts\LinLibertine_R.ttf#Linux Libertine" />
                 </StackPanel>
                 <StackPanel Margin="0, 100, 0, 0" Name="showMsgs">
                     <StackPanel Name="noWikis" Visibility="Collapsed">

@@ -1,5 +1,0 @@
-MainPackage=C:\Development\wikia Unofficial\wikia Unofficial\bin\x86\Release\Upload\wikia Unofficial_1.1.1.0_x86.appx
-ResourcePack=C:\Development\wikia Unofficial\wikia Unofficial\_scale-100.appx
-ResourcePack=C:\Development\wikia Unofficial\wikia Unofficial\_scale-125.appx
-ResourcePack=C:\Development\wikia Unofficial\wikia Unofficial\_scale-150.appx
-ResourcePack=C:\Development\wikia Unofficial\wikia Unofficial\_scale-400.appx

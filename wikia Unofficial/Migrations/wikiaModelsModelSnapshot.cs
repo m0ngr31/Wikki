@@ -16,7 +16,7 @@ namespace wikia_UnofficialMigrations
 
             builder.Entity("wikia_Unofficial.Models.Favorite", b =>
                 {
-                    b.Property<int>("FavoriteId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("FavoriteName")
@@ -27,7 +27,7 @@ namespace wikia_UnofficialMigrations
 
                     b.Property<int>("WikiId");
 
-                    b.Key("FavoriteId");
+                    b.Key("Id");
                 });
 
             builder.Entity("wikia_Unofficial.Models.Setting", b =>

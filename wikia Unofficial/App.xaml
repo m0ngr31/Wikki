@@ -6,7 +6,7 @@
     RequestedTheme="Light">
 
     <Application.Resources>
-        <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+        <FontFamily x:Key="FontAwesome">\Fonts\fontawesome-webfont.ttf#FontAwesome</FontFamily>
         <Style x:Key="NoAnimations" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>

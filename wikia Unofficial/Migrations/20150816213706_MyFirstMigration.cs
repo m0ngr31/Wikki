@@ -13,14 +13,14 @@ namespace wikia_UnofficialMigrations
                 name: "Favorite",
                 columns: table => new
                 {
-                    FavoriteId = table.Column(type: "INTEGER", nullable: false),
+                    Id = table.Column(type: "INTEGER", nullable: false),
                     FavoriteName = table.Column(type: "TEXT", nullable: false),
                     Url = table.Column(type: "TEXT", nullable: false),
                     WikiId = table.Column(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Favorite", x => x.FavoriteId);
+                    table.PrimaryKey("PK_Favorite", x => x.Id);
                 });
             migration.CreateTable(
                 name: "Wiki",

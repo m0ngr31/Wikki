@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="62203m0ngr31.Wikki" Publisher="CN=4422DCCC-46CA-4CDC-9D30-06C9AF13C3F2" Version="1.1.1.0" />
+  <Identity Name="62203m0ngr31.Wikki" Publisher="CN=4422DCCC-46CA-4CDC-9D30-06C9AF13C3F2" Version="1.1.7.0" />
   <mp:PhoneIdentity PhoneProductId="af115632-2a0b-4a96-88f0-6f4a4bb629c4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Wikki</DisplayName>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="wikia_Unofficial.App">
-      <uap:VisualElements DisplayName="Wikki" Square150x150Logo="Assets\Square150x150Logo\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo\Square44x44Logo.png" Description="Unofficial app for browsing Wikia pages. Lets you save your favorite topics so you can search them quickly." BackgroundColor="#f7f7f7">
+      <uap:VisualElements DisplayName="Wikki" Square150x150Logo="Assets\Square150x150Logo\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo\Square44x44Logo.png" Description="Unofficial app for browsing Wikia pages. Lets you save your favorite topics so you can search them quickly." BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo\Wide310x150Logo.png" Square71x71Logo="Assets\Square71x71Logo\Square71x71Logo.png" Square310x310Logo="Assets\Square310x310Logo\Square310x310Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />

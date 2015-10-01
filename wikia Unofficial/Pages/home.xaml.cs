@@ -55,7 +55,7 @@ namespace wikia_Unofficial.Pages
         private List<String> SearchIcons;
         private IList<WikiSearchResult> WikiSearchResults;
 
-        private WikiSearchResult selectedWiki;
+        //private WikiSearchResult selectedWiki;
 
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
